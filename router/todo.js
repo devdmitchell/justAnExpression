@@ -1,6 +1,7 @@
 
 const express = require('express')
 const router = express.Router()
+const uuidv4 = require('uuid').v4
 
 let todos = [
     {
@@ -86,9 +87,16 @@ res.json({message: 'Array Sorted by done.', payload: filteredTodos})
 })
 
 
-
-
-
+router.post('/create-new-todo', (req, res) => {
+  //req.body.todoItem
+  const newTodo = {
+    id: uuidv4(),
+    todo: req.body.todoItem,
+    done: "false"
+  }
+  todos.push(newTodo)
+  res.json({message:"Todo added.", payload: todos})
+})
 
 
 
