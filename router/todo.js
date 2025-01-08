@@ -31,13 +31,28 @@ router.get(`/get-todo-by-id/:id`, (req, res)=>{
 })
 
 
-router.get('/get-todos-by-done/:done', (req, res) => {
+// router.get('/get-todos-by-done/:done', (req, res) => {
+//   const { done } = req.params
+//   const isDone = done === 'true'
+//   const isNotDone = done === 'false'
+//   const newDoneArray = todos.filter(todo => todo.done === done)
+//   res.json({message:`Todos with done status: ${done}`, payload: newDoneArray})
+// })
+
+
+
+outer.get('/get-todos-by-done/:done', (req, res) => {
   const { done } = req.params
-  const isDone = done === 'true'
-  const isNotDone = done === 'false'
-  const newDoneArray = todos.filter(todo => todo.done === done)
-  res.json({message:`Todos with done status: ${done}`, payload: newDoneArray})
-})
+  let newDoneArray
+  if (done === 'true') {
+      newDoneArray = todos.filter((todo) => todo.done === 'true')
+      res.json({message:'Array Sorted by done.', payload: newDoneArray})
+  }else{
+     (done === 'false') 
+    {newDoneArray = todos.filter((todo) => todo.done === 'false')}
+    res.json({message:'Array Sorted by done.', payload: newDoneArray})
+    }})
+
 
 
 router.post('/create-new-todo', (req, res) => {
@@ -50,6 +65,32 @@ router.post('/create-new-todo', (req, res) => {
 todos.push(newTodo)
 res.json({payload: todos})
 })
+
+
+
+
+
+// IN CLASS HELP
+
+//#5
+// expect req.params.isDone
+//filter
+// return the filtered array
+
+router.get('/get-todos-by-done/:isDone', (req, res) => {
+const {isDone} = req.params                           //pull out the parameter itself
+// const isDone = req.params.isDone
+const filteredTodos = todos.filter(function(todo){    //take array of todo and filter it
+  return todo.done === isDone
+})
+res.json({message: 'Array Sorted by done.', payload: filteredTodos})
+})
+
+
+
+
+
+
 
 
 module.exports = router
