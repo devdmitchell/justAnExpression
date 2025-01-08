@@ -40,8 +40,7 @@ router.get(`/get-todo-by-id/:id`, (req, res)=>{
 // })
 
 
-
-outer.get('/get-todos-by-done/:done', (req, res) => {
+router.get('/get-todos-by-done/:done', (req, res) => {
   const { done } = req.params
   let newDoneArray
   if (done === 'true') {
